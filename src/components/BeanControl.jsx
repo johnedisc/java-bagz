@@ -1,32 +1,39 @@
 import React from 'react';
 import { v4 } from 'uuid';
 import BeanList from './BeanList';
+import NewBeanForm from './NewBeanForm';
 
 class BeanControl extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      loaded: true,
+      showForm: false,
       mainBeanList: [...beanSeed]
     };
   }
 
+  handleNewForm = () => {
+
+  }
+
   render(){
 
-    let currentlyVisibleState = null;
+    let visibleState = null;
     let buttonText = null;
 
-    if (this.state.loaded) {
-      currentlyVisibleState = <BeanList 
+    if (this.state.showForm) {
+      visibleState = <NewBeanForm />
+    } else {
+      visibleState = <BeanList 
         list={this.state.mainBeanList}
         />;
-      buttonText = "blast off";
+      buttonText = "add a coffee";
     }
     return (
       <>
-        {currentlyVisibleState}
-        <button id="form-ticket-button">{buttonText}</button>
+        {visibleState}
+        <button id="form-ticket-button" onClick="handleNewForm">{buttonText}</button>
       </>
     );
 

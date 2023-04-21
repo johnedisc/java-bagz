@@ -10,7 +10,7 @@ function Bean(props){
     <>
       <div className="list-item flexed-down" style={listItemStyle}>
         <h3>{props.name} - {props.origin}</h3>
-        <p>{props.roast} roast, ${props.price}, {props.quantityRemaining} lbs. remaing</p>
+        <p>{props.roast} roast | ${props.price} | {props.quantityRemaining} lbs. remaing</p>
       </div>
     </>
   );
