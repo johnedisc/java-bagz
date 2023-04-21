@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const listItemStyle = {
+  alignItems: "center"
+}
+
 function Bean(props){
   return (
     <>
-      {<div className="list-item">
+      <div className="list-item flexed-down" style={listItemStyle}>
         <h3>{props.name} - {props.origin}</h3>
-        <p>{props.roast}</p>
-        <p>{props.price}</p>
-        <p>{props.quantityRemaining}</p>
-      </div>}
+        <p>{props.roast} roast, ${props.price}, {props.quantityRemaining} lbs. remaing</p>
+      </div>
     </>
   );
 }
@@ -17,7 +19,9 @@ function Bean(props){
 Bean.propTypes = {
   name: PropTypes.string,
   origin: PropTypes.string,
-  roast: PropTypes.string
+  roast: PropTypes.string,
+  price: PropTypes.number,
+  quantityRemaining: PropTypes.string
 };
 
 export default Bean;
