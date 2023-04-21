@@ -5,7 +5,8 @@ class BeanControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: true
+      loaded: true,
+      beanList: []
     };
   }
 
