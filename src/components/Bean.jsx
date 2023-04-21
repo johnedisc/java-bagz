@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 function Bean(props){
   return (
     <>
-      <div className="list-item">
+      {<div className="list-item">
         <h3>{props.name} - {props.origin}</h3>
         <p>{props.roast}</p>
         <p>{props.price}</p>
         <p>{props.quantityRemaining}</p>
-      </div>
+      </div>}
     </>
   );
 }
