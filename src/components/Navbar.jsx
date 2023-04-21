@@ -1,3 +1,4 @@
+
 const componentStyle = {
   backgroundColor: 'black',
   width: '100%'

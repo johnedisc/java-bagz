@@ -1,6 +1,7 @@
 import './../App.css'
 import { Navbar } from './Navbar';
 import { Footer } from './Navbar';
+import BeanControl from './BeanControl';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <div className='container flexed-down'>        
         <Navbar />
+        <BeanControl />
         <Footer />
       </div>
     </>

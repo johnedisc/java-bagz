@@ -22,9 +22,13 @@ body {
   background: #191925;
   color: #FE2B5B;
   font-family: 'Rubik', sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
 }
 
 .container {
+  height: 100vh;
   align-items: center;
   justify-content: space-between;
   gap: var(--box-padding);
