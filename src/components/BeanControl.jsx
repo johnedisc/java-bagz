@@ -19,13 +19,24 @@ class BeanControl extends React.Component {
     }));
   }
 
+  handleConcatNewBean = (newBean) => {
+  const updatedList = this.state.mainBeanList.concat(newBean);
+  this.setState({
+    mainBeanList: updatedList,
+    showForm: false 
+  });
+}
+
+
   render(){
 
     let visibleState = null;
     let buttonText = null;
 
     if (this.state.showForm) {
-      visibleState = <NewBeanForm />
+      visibleState = <NewBeanForm 
+        onCreateBean={this.handleConcatNewBean}
+      />
       buttonText= "send of new bag"
     } else {
       visibleState = <BeanList 

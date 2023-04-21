@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function NewBeanForm(){
+function NewBeanForm(props){
 
   return (
     <>
@@ -20,6 +21,10 @@ function NewBeanForm(){
       </form>
     </>
   );
+}
+
+NewBeanForm.propTypes = {
+  onCreateBean: PropTypes.func 
 }
 
 export default NewBeanForm;
