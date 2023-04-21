@@ -14,11 +14,14 @@
 
 ```mermaid
 flowchart TD
-    A[java-bagz] --> B{beanControl}
-    B -- Yes --> C[OK]
-    C --> D[Rethink]
-    D --> B
-    B -- No ----> E[End]
+    A[java-bagz] --> B{BeanControl}
+    A --> J[Navbar]
+    A --> K[Footer]
+    B --> F((BeanList))
+    F --> G[Bean]
+    B --> H((NewBeanForm))
+    B --> L((EditBeanForm))
+    B --> I((BeanDetail))
 ```
 
 ## setup/installation requirements
