@@ -13,7 +13,12 @@
 ## diagram
 
 ```mermaid
-
+flowchart TD
+    A[java-bagz] --> B{beanControl}
+    B -- Yes --> C[OK]
+    C --> D[Rethink]
+    D --> B
+    B -- No ----> E[End]
 ```
 
 ## setup/installation requirements
