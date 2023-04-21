@@ -12,6 +12,11 @@
   flex-direction: column;
 }
 
+.flexed-row {
+  display: flex;
+  flex-direction: row;
+}
+
 html,
 body {
   background: #191925;
@@ -21,6 +26,7 @@ body {
 
 .container {
   align-items: center;
+  justify-content: space-between;
   gap: var(--box-padding);
 }
 
