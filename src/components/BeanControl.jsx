@@ -37,7 +37,7 @@ class BeanControl extends React.Component {
       visibleState = <NewBeanForm 
         onCreateBean={this.handleConcatNewBean}
       />
-      buttonText= "send of new bag"
+      buttonText= "return to list"
     } else {
       visibleState = <BeanList 
         list={this.state.mainBeanList}

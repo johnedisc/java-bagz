@@ -5,7 +5,7 @@ const listItemStyle = {
   alignItems: "center"
 }
 
-function Bean(props){
+const Bean = (props) => {
   return (
     <>
       <div className="list-item flexed-down" style={listItemStyle}>
