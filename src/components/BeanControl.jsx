@@ -14,7 +14,7 @@ class BeanControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.loaded) {
+    if (this.state.loaded) {
       currentlyVisibleState = 'good morn';
       buttonText = "blast off";
     }
