@@ -1,4 +1,5 @@
 import Bean from "./Bean";
+import PropTypes from "prop-types";
 
 function BeanList(props){
   return (
@@ -16,6 +17,10 @@ function BeanList(props){
       )}
     </>
   );
+}
+
+BeanList.propTypes = {
+  list: PropTypes.array
 }
 
 

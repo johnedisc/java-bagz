@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 } from 'uuid';
 import BeanList from './BeanList';
 import NewBeanForm from './NewBeanForm';
+import BeanDetail from './BeanDetail';
 
 class BeanControl extends React.Component {
 
@@ -9,7 +10,8 @@ class BeanControl extends React.Component {
     super(props);
     this.state = {
       showForm: false,
-      mainBeanList: [...beanSeed]
+      mainBeanList: [...beanSeed],
+      selectedCoffee: null
     };
   }
 
@@ -33,7 +35,11 @@ class BeanControl extends React.Component {
     let visibleState = null;
     let buttonText = null;
 
-    if (this.state.showForm) {
+    if (this.state.selectedCoffee != null) {
+      visibleState = <CoffeeDetail 
+        coffee={selectedCoffee} 
+      />
+    } else if (this.state.showForm) {
       visibleState = <NewBeanForm 
         onCreateBean={this.handleConcatNewBean}
       />
