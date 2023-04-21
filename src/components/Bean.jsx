@@ -21,7 +21,7 @@ Bean.propTypes = {
   origin: PropTypes.string,
   roast: PropTypes.string,
   price: PropTypes.number,
-  quantityRemaining: PropTypes.string
+  quantityRemaining: PropTypes.number
 };
 
 export default Bean;

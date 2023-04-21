@@ -1,12 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { v4 } from "uuid";
 
-function NewBeanForm(props){
+function NewBeanForm(){
 
   return (
     <>
-      <form id="help-form" className="flexed-down" onSubmit={handleNewTicketFormSubmission}>
+      <form id="help-form" className="flexed-down">
         <input 
           type="text" 
           name="names" 
@@ -23,9 +21,6 @@ function NewBeanForm(props){
     </>
   );
 }
-
-NewBeanForm.propTypes = {
-};
 
 export default NewBeanForm;
 

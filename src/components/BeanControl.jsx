@@ -14,7 +14,9 @@ class BeanControl extends React.Component {
   }
 
   handleNewForm = () => {
-
+    this.setState(previousState => ({
+      showForm: !previousState.showForm
+    }));
   }
 
   render(){
@@ -24,6 +26,7 @@ class BeanControl extends React.Component {
 
     if (this.state.showForm) {
       visibleState = <NewBeanForm />
+      buttonText= "send of new bag"
     } else {
       visibleState = <BeanList 
         list={this.state.mainBeanList}
@@ -33,7 +36,7 @@ class BeanControl extends React.Component {
     return (
       <>
         {visibleState}
-        <button id="form-ticket-button" onClick="handleNewForm">{buttonText}</button>
+        <button id="form-ticket-button" onClick={this.handleNewForm}>{buttonText}</button>
       </>
     );
 
