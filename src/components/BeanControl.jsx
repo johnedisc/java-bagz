@@ -3,6 +3,7 @@ import { v4 } from 'uuid';
 import BeanList from './BeanList';
 import NewBeanForm from './NewBeanForm';
 import BeanDetail from './BeanDetail';
+import EditCoffeeForm from './EditCoffeeForm';
 
 class BeanControl extends React.Component {
 
@@ -54,12 +55,28 @@ class BeanControl extends React.Component {
     this.setState({editing: true});
   }
 
+  handleEditList = (beanToEdit) => {
+    const editedMainBeanList = this.state.mainBeanList
+      .filter(element => element.id !== this.state.selectedCoffee.id)
+      .concat(beanToEdit);
+    this.setState({
+      mainBeanList: editedMainBeanList,
+      editing: false,
+      selectedCoffee: null
+    });
+  }
+
   render(){
 
     let visibleState = null;
     let buttonText = null;
 
-    if (this.state.selectedCoffee !== null) {
+    if (this.state.editing) {
+      visibleState= <EditCoffeeForm 
+      bean={this.state.selectedCoffee}
+        />
+      buttonText= "return to list";
+    } else if (this.state.selectedCoffee !== null) {
       visibleState = <BeanDetail 
         bean={this.state.selectedCoffee} 
         onClickingDelete={this.handleDeleteBean}
