@@ -21,7 +21,8 @@ class BeanControl extends React.Component {
     if (this.state.selectedCoffee != null) {
       this.setState({
         showForm: false,
-        selectedCoffee: null
+        selectedCoffee: null,
+        editing: false
       });
     } else {
       this.setState(previousState => ({
@@ -73,8 +74,9 @@ class BeanControl extends React.Component {
 
     if (this.state.editing) {
       visibleState= <EditCoffeeForm 
-      bean={this.state.selectedCoffee}
-        />
+        bean={this.state.selectedCoffee}
+        onEditCoffee={this.handleEditList}
+      />
       buttonText= "return to list";
     } else if (this.state.selectedCoffee !== null) {
       visibleState = <BeanDetail 
