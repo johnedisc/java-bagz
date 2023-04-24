@@ -6,6 +6,7 @@ function BeanList(props){
     <>
       {props.list.map((listItem) =>
         <Bean 
+          whenCoffeeClicked = { props.onCoffeeSelection }
           name = { listItem.name }
           origin = { listItem.origin }
           roast = { listItem.roast }
@@ -20,7 +21,8 @@ function BeanList(props){
 }
 
 BeanList.propTypes = {
-  list: PropTypes.array
+  list: PropTypes.array,
+  onCoffeeSelection: PropTypes.func
 }
 
 

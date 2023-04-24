@@ -26,9 +26,14 @@ class BeanControl extends React.Component {
   this.setState({
     mainBeanList: updatedList,
     showForm: false 
-  });
-}
+    });
+  }
 
+  handleChangingSelectedCoffee = (id) => {
+    console.log(id);
+    const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
+    this.setState({selectedCoffee: selectedCoffee});
+  }
 
   render(){
 
@@ -47,6 +52,7 @@ class BeanControl extends React.Component {
     } else {
       visibleState = <BeanList 
         list={this.state.mainBeanList}
+        onCoffeeSelection={this.handleChangingSelectedCoffee}
         />;
       buttonText = "add a coffee";
     }
