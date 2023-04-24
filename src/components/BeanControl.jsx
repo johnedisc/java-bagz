@@ -36,6 +36,14 @@ class BeanControl extends React.Component {
     });
   }
 
+  handleDeleteBean = (id) => {
+  const updatedList = this.state.mainBeanList.filter(element => element.id !== id);
+  this.setState({
+    mainBeanList: updatedList,
+    selectedCoffee: null 
+    });
+  }
+
   handleChangingSelectedCoffee = (id) => {
     console.log(id);
     const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
@@ -50,6 +58,7 @@ class BeanControl extends React.Component {
     if (this.state.selectedCoffee != null) {
       visibleState = <BeanDetail 
         bean={this.state.selectedCoffee} 
+        onClickingDelete={this.handleDeleteBean}
       />
       buttonText= "return to list";
     } else if (this.state.showForm) {
