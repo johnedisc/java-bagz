@@ -1,3 +1,4 @@
+import React from "react";
 import Bean from "./Bean";
 import PropTypes from "prop-types";
 

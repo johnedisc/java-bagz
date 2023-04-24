@@ -11,7 +11,8 @@ class BeanControl extends React.Component {
     this.state = {
       showForm: false,
       mainBeanList: [...beanSeed],
-      selectedCoffee: null
+      selectedCoffee: null,
+      editing: false
     };
   }
 
@@ -45,9 +46,12 @@ class BeanControl extends React.Component {
   }
 
   handleChangingSelectedCoffee = (id) => {
-    console.log(id);
     const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
     this.setState({selectedCoffee: selectedCoffee});
+  }
+
+  handleEditClick = () => {
+    this.setState({editing: true});
   }
 
   render(){
@@ -55,10 +59,11 @@ class BeanControl extends React.Component {
     let visibleState = null;
     let buttonText = null;
 
-    if (this.state.selectedCoffee != null) {
+    if (this.state.selectedCoffee !== null) {
       visibleState = <BeanDetail 
         bean={this.state.selectedCoffee} 
         onClickingDelete={this.handleDeleteBean}
+        onClickingEdit={this.handleEditClick}
       />
       buttonText= "return to list";
     } else if (this.state.showForm) {
@@ -76,7 +81,7 @@ class BeanControl extends React.Component {
     return (
       <>
         {visibleState}
-        <button id="form-ticket-button" onClick={this.handleNewForm}>{buttonText}</button>
+        <span><button id="form-ticket-button" onClick={this.handleNewForm}>{buttonText}</button></span>
       </>
     );
 
