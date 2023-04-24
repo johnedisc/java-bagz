@@ -6,7 +6,12 @@ function BeanDetail(props) {
     alignItems: 'center'
   }
 
-  const { bean, onClickingDelete, onClickingEdit } = props;
+  const { 
+    bean, 
+    onClickingDelete, 
+    onClickingEdit,
+    onClickingSell
+  } = props;
 
   return (
     <>
@@ -17,6 +22,7 @@ function BeanDetail(props) {
         <p>${bean.price}/lbs</p>
         <p>{bean.quantityRemaining} lbs. remaining</p>
       </div>
+      <span><button onClick={() => onClickingSell(bean.id)}>sell coffee</button></span>
       <span><button onClick={onClickingEdit}>update coffee</button></span>
       <span><button onClick={() => onClickingDelete(bean.id)}>remove coffee from list</button></span>
     </>
@@ -26,7 +32,8 @@ function BeanDetail(props) {
 BeanDetail.propTypes = {
   bean: PropTypes.object,
   onClickingDelete: PropTypes.func,
-  onClickingEdit: PropTypes.func
+  onClickingEdit: PropTypes.func,
+  onClickingSell: PropTypes.func
 }
 
 export default BeanDetail;

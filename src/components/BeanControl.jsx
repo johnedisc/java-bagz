@@ -67,6 +67,21 @@ class BeanControl extends React.Component {
     });
   }
 
+  handleSellCoffee = (id) => {
+    const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
+    console.log(selectedCoffee);
+    const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
+    const selectedCoffeeUpdated = Object.assign({}, selectedCoffee, newQuantity);
+    console.log('update',selectedCoffeeUpdated);
+    const editedMainBeanList = this.state.mainBeanList
+      .filter(element => element.id !== this.state.selectedCoffee.id)
+      .concat(selectedCoffeeUpdated);
+    this.setState({
+      mainBeanList: editedMainBeanList,
+      selectedCoffee: null
+    });
+  }
+
   render(){
 
     let visibleState = null;
@@ -83,6 +98,7 @@ class BeanControl extends React.Component {
         bean={this.state.selectedCoffee} 
         onClickingDelete={this.handleDeleteBean}
         onClickingEdit={this.handleEditClick}
+        onClickingSell={this.handleSellCoffee}
       />
       buttonText= "return to list";
     } else if (this.state.showForm) {
