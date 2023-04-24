@@ -21,7 +21,7 @@ Bean.propTypes = {
   origin: PropTypes.string,
   roast: PropTypes.string,
   price: PropTypes.number,
-  id: PropTypes.number,
+  id: PropTypes.string,
   quantityRemaining: PropTypes.number,
   whenCoffeeClicked: PropTypes.func
 };

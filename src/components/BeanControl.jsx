@@ -41,14 +41,15 @@ class BeanControl extends React.Component {
     let buttonText = null;
 
     if (this.state.selectedCoffee != null) {
-      visibleState = <CoffeeDetail 
-        coffee={selectedCoffee} 
+      visibleState = <BeanDetail 
+        bean={this.state.selectedCoffee} 
       />
+      buttonText= "return to list";
     } else if (this.state.showForm) {
       visibleState = <NewBeanForm 
         onCreateBean={this.handleConcatNewBean}
       />
-      buttonText= "return to list"
+      buttonText= "return to list";
     } else {
       visibleState = <BeanList 
         list={this.state.mainBeanList}

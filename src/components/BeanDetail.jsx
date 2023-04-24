@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 function BeanDetail(props) {
@@ -15,6 +14,7 @@ function BeanDetail(props) {
 }
 
 BeanDetail.propTypes = {
+  bean: PropTypes.object
 }
 
 export default BeanDetail;
