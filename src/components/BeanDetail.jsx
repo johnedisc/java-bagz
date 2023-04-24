@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
 
 function BeanDetail(props) {
+  const componentStyle = {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
   const { bean } = props;
 
   return (
     <>
-      <h1>{bean.name} coffee details</h1>
-      <h3>{bean.origin}</h3>
-      <p><em>{bean.issue}</em></p>
-      <hr />
+      <div className="flexed-down" style={componentStyle}>
+        <h3>{bean.name} details</h3>
+        <p>{bean.origin}, {bean.roast}</p>
+        <p>{bean.price}</p>
+        <p>{bean.quantityRemaining}</p>
+      </div>
     </>
   );
 }

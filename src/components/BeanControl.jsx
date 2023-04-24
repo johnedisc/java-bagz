@@ -16,9 +16,16 @@ class BeanControl extends React.Component {
   }
 
   handleNewForm = () => {
-    this.setState(previousState => ({
-      showForm: !previousState.showForm
-    }));
+    if (this.state.selectedCoffee != null) {
+      this.setState({
+        showForm: false,
+        selectedCoffee: null
+      });
+    } else {
+      this.setState(previousState => ({
+        showForm: !previousState.showForm
+      }));
+    }
   }
 
   handleConcatNewBean = (newBean) => {
