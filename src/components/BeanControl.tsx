@@ -8,15 +8,6 @@ import { useState } from 'react';
 
 export const BeanControl = () => {
 
-//  constructor(props) {
-//    super(props);
-//    this.state = {
-//      showForm: false,
-//      mainBeanList: [...beanSeed],
-//      selectedCoffee: null,
-//      editing: false
-//    };
-//  }
   const [showForm, setShowForm] = useState(false)
   const [mainBeanList, setMainBeanList] = useState([...beanSeed])
   const [selectedCoffee, setSelectedCoffee] = useState(null)
