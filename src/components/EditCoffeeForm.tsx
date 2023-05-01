@@ -14,7 +14,7 @@ const EditCoffeeForm = (props: EditCoffeeProps) => {
     event.preventDefault();
     onEditCoffee({
       name: event.target.name.value,
-      origin:event.target.origin.value,
+      origin: event.target.origin.value,
       roast: event.target.roast.value,
       price: parseFloat(event.target.price.value),
       quantityRemaining: parseInt(event.target.quantityRemaining.value),

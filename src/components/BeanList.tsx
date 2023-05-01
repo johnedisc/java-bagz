@@ -1,8 +1,13 @@
 import React from "react";
 import Bean from "./Bean";
-import PropTypes from "prop-types";
+import { BeanType } from "../interfaces/interfaces";
 
-function BeanList(props){
+interface BeanListProps {
+  list: BeanType[];
+  onCoffeeSelection: () => void;
+}
+
+function BeanList(props: BeanListProps){
   return (
     <>
       {props.list.map((listItem) =>
@@ -20,12 +25,6 @@ function BeanList(props){
     </>
   );
 }
-
-BeanList.propTypes = {
-  list: PropTypes.array,
-  onCoffeeSelection: PropTypes.func
-}
-
 
 export default BeanList;
 

@@ -1,7 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Form = (props) => {
+interface FormProps {
+  formSubmissionHandler: (event: any) => void;
+  buttonText: string;
+}
+
+const Form = (props: FormProps) => {
   return (
     <>
       <form id="help-form" className="flexed-down" onSubmit={props.formSubmissionHandler}>
@@ -32,11 +36,6 @@ const Form = (props) => {
       </form>
     </>
   );
-}
-
-Form.propTypes = {
-  formSubmissionHandler: PropTypes.func,
-  buttonText: PropTypes.string
 }
 
 export default Form;

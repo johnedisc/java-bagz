@@ -1,5 +1,4 @@
 import React from "react";
-import { BeanType } from './../interfaces/interfaces';
 
 interface BeanProps {
   name: string,

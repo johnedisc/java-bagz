@@ -1,11 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { v4 } from "uuid";
 import Form from "./Form";
+import { BeanType } from "../interfaces/interfaces";
 
-const NewBeanForm = (props) => {
+interface NewBeanFormProps {
+  onCreateBean: (bean: BeanType) => void;
+}
 
-  const handleNewFormSubmission = (event) => {
+const NewBeanForm = (props: NewBeanFormProps) => {
+
+  const handleNewFormSubmission = (event: any) => {
     event.preventDefault();
     props.onCreateBean({ 
       name: event.target.name.value,
@@ -25,10 +29,6 @@ const NewBeanForm = (props) => {
       />
     </>
   );
-}
-
-NewBeanForm.propTypes = {
-  onCreateBean: PropTypes.func 
 }
 
 export default NewBeanForm;
