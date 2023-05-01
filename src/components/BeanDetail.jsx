@@ -13,6 +13,7 @@ function BeanDetail(props) {
     onClickingSell
   } = props;
 
+  console.log(bean);
   return (
     <>
       <div className="flexed-down" style={componentStyle}>
