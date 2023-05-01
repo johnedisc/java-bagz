@@ -1,11 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { BeanType } from './../interfaces/interfaces';
+
+interface BeanProps {
+  name: string,
+  origin: string,
+  roast: string,
+  price: number,
+  id: string,
+  quantityRemaining: number,
+  whenCoffeeClicked: (id: string) => void;
+}
 
 const listItemStyle = {
   alignItems: "center"
 }
 
-const Bean = (props) => {
+const Bean = (props: BeanProps) => {
   return (
     <>
       <div className="list-item flexed-down" style={listItemStyle} onClick={() => props.whenCoffeeClicked(props.id)}>
@@ -15,16 +25,6 @@ const Bean = (props) => {
     </>
   );
 }
-
-Bean.propTypes = {
-  name: PropTypes.string,
-  origin: PropTypes.string,
-  roast: PropTypes.string,
-  price: PropTypes.number,
-  id: PropTypes.string,
-  quantityRemaining: PropTypes.number,
-  whenCoffeeClicked: PropTypes.func
-};
 
 export default Bean;
 

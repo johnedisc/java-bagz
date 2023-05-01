@@ -1,6 +1,14 @@
-import PropTypes from "prop-types";
+import React from "react";
+import { BeanType } from "../interfaces/interfaces";
 
-function BeanDetail(props) {
+interface BeanDetailProps {
+  bean: BeanType;
+  onClickingDelete: (id: string) => void;
+  onClickingEdit: () => void;
+  onClickingSell: (id: string) => void;
+}
+
+function BeanDetail(props: BeanDetailProps) {
   const componentStyle = {
     justifyContent: 'center',
     alignItems: 'center'
@@ -28,13 +36,6 @@ function BeanDetail(props) {
       <span><button onClick={() => onClickingDelete(bean.id)}>remove coffee from list</button></span>
     </>
   );
-}
-
-BeanDetail.propTypes = {
-  bean: PropTypes.object,
-  onClickingDelete: PropTypes.func,
-  onClickingEdit: PropTypes.func,
-  onClickingSell: PropTypes.func
 }
 
 export default BeanDetail;

@@ -1,7 +1,13 @@
+import React from "react";
+import { BeanType } from "../interfaces/interfaces";
 import Form from "./Form";
-import PropTypes from "prop-types";
 
-const EditCoffeeForm = (props) => {
+interface EditCoffeeProps {
+  bean: BeanType;
+  onEditCoffee: (bean: BeanType) => void;
+}
+
+const EditCoffeeForm = (props: EditCoffeeProps) => {
   const { bean, onEditCoffee } = props;
 
   const handleEditFormSubmission = (event) => {
@@ -24,11 +30,6 @@ const EditCoffeeForm = (props) => {
       />
     </>
   );
-}
-
-EditCoffeeForm.propTypes = {
-  bean: PropTypes.object,
-  onEditCoffee: PropTypes.func
 }
 
 export default EditCoffeeForm;

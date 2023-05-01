@@ -5,12 +5,13 @@ import NewBeanForm from './NewBeanForm';
 import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
 import { useState } from 'react';
+import { BeanType } from './../interfaces/interfaces';
 
 export const BeanControl = () => {
 
   const [showForm, setShowForm] = useState(false)
   const [mainBeanList, setMainBeanList] = useState([...beanSeed])
-  const [selectedCoffee, setSelectedCoffee] = useState(null)
+  const [selectedCoffee, setSelectedCoffee] = useState<BeanType | null>(null)
   const [editing, setEditing] = useState(false)
 
   const handleNewForm = () => {
@@ -23,17 +24,17 @@ export const BeanControl = () => {
     }
   }
 
-  const handleConcatNewBean = (newBean) => {
+  const handleConcatNewBean = (newBean: BeanType) => {
     setMainBeanList(mainBeanList.concat(newBean));
     setShowForm(false);
   }
 
-  const handleDeleteBean = (id) => {
+  const handleDeleteBean = (id: string) => {
     setMainBeanList(mainBeanList.filter(element => element.id !== id));
     setSelectedCoffee(null);
   }
 
-  const handleChangingSelectedCoffee = (id) => {
+  const handleChangingSelectedCoffee = (id: string) => {
     setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
   }
 
@@ -41,27 +42,31 @@ export const BeanControl = () => {
     setEditing(true);
   }
 
-  const handleEditList = (beanToEdit) => {
+  const handleEditList = (beanToEdit: BeanType) => {
+    if (selectedCoffee !== null) {
     const editedMainBeanList = mainBeanList
       .filter(element => element.id !== selectedCoffee.id)
       .concat(beanToEdit);
     setMainBeanList(editedMainBeanList);
     setSelectedCoffee(null);
     setEditing(false);
+    }
   }
 
-  const handleSellCoffee = (id) => {
-    setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
-    const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
-    const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
-    console.log('temp', tempCoffee);
-    setSelectedCoffee(tempCoffee);
-    console.log('update', selectedCoffee);
-//    const editedMainBeanList = mainBeanList
-//      .filter(element => element.id !== selectedCoffee.id)
-//      .concat(selectedCoffee);
-//    setMainBeanList(editedMainBeanList);
-//    setSelectedCoffee(selectedCoffee);
+  const handleSellCoffee = (id: string) => {
+    if (selectedCoffee !== null) {
+      setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
+      const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
+      const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
+      console.log('temp', tempCoffee);
+      setSelectedCoffee(tempCoffee);
+      console.log('update', selectedCoffee);
+      const editedMainBeanList = mainBeanList
+        .filter(element => element.id !== selectedCoffee.id)
+        .concat(selectedCoffee);
+      setMainBeanList(editedMainBeanList);
+      setSelectedCoffee(selectedCoffee);
+    }
   }
 
   let visibleState = null;
