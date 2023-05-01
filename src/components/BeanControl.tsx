@@ -56,23 +56,24 @@ export const BeanControl = () => {
   const handleSellCoffee = (id: string) => {
     if (selectedCoffee !== null) {
       setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
-      const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
-      const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
-      console.log('temp', tempCoffee);
-      setSelectedCoffee(tempCoffee);
-      console.log('update', selectedCoffee);
-      const editedMainBeanList = mainBeanList
-        .filter(element => element.id !== selectedCoffee.id)
-        .concat(selectedCoffee);
-      setMainBeanList(editedMainBeanList);
-      setSelectedCoffee(selectedCoffee);
+      if (selectedCoffee.quantityRemaining > 0) {
+        const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
+        const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
+  //      console.log('temp', tempCoffee);
+  //      console.log('update', selectedCoffee);
+        const editedMainBeanList = mainBeanList
+          .filter(element => element.id !== selectedCoffee.id)
+          .concat(tempCoffee);
+        setMainBeanList(editedMainBeanList);
+        setSelectedCoffee(tempCoffee);
+      }
     }
   }
 
   let visibleState = null;
   let buttonText = null;
 
-  if (editing) {
+  if (editing && selectedCoffee !== null) {
     visibleState= <EditCoffeeForm 
       bean={selectedCoffee}
       onEditCoffee={handleEditList}
