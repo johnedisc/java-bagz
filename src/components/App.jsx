@@ -1,7 +1,7 @@
 import './../App.css'
 import { Navbar } from './Navbar';
 import { Footer } from './Navbar';
-import BeanControl from './BeanControl';
+import { BeanControl } from './BeanControl';
 import { Timer } from './Timer';
 
 function App() {

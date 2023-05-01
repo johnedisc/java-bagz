@@ -4,128 +4,112 @@ import BeanList from './BeanList';
 import NewBeanForm from './NewBeanForm';
 import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
+import { useState } from 'react';
 
-class BeanControl extends React.Component {
+export const BeanControl = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showForm: false,
-      mainBeanList: [...beanSeed],
-      selectedCoffee: null,
-      editing: false
-    };
-  }
+//  constructor(props) {
+//    super(props);
+//    this.state = {
+//      showForm: false,
+//      mainBeanList: [...beanSeed],
+//      selectedCoffee: null,
+//      editing: false
+//    };
+//  }
+  const [showForm, setShowForm] = useState(false)
+  const [mainBeanList, setMainBeanList] = useState([...beanSeed])
+  const [selectedCoffee, setSelectedCoffee] = useState(null)
+  const [editing, setEditing] = useState(false)
 
-  handleNewForm = () => {
-    if (this.state.selectedCoffee != null) {
-      this.setState({
-        showForm: false,
-        selectedCoffee: null,
-        editing: false
-      });
+  const handleNewForm = () => {
+    if (selectedCoffee !== null) {
+      setShowForm(false);
+      setSelectedCoffee(null);
+      setEditing(false);
     } else {
-      this.setState(previousState => ({
-        showForm: !previousState.showForm
-      }));
+      setShowForm(!showForm);
     }
   }
 
-  handleConcatNewBean = (newBean) => {
-  const updatedList = this.state.mainBeanList.concat(newBean);
-  this.setState({
-    mainBeanList: updatedList,
-    showForm: false 
-    });
+  const handleConcatNewBean = (newBean) => {
+    setMainBeanList(mainBeanList.concat(newBean));
+    setShowForm(false);
   }
 
-  handleDeleteBean = (id) => {
-  const updatedList = this.state.mainBeanList.filter(element => element.id !== id);
-  this.setState({
-    mainBeanList: updatedList,
-    selectedCoffee: null 
-    });
+  const handleDeleteBean = (id) => {
+    setMainBeanList(mainBeanList.filter(element => element.id !== id));
+    setSelectedCoffee(null);
   }
 
-  handleChangingSelectedCoffee = (id) => {
-    const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
-    this.setState({selectedCoffee: selectedCoffee});
+  const handleChangingSelectedCoffee = (id) => {
+    setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
   }
 
-  handleEditClick = () => {
-    this.setState({editing: true});
+  const handleEditClick = () => {
+    setEditing(true);
   }
 
-  handleEditList = (beanToEdit) => {
-    const editedMainBeanList = this.state.mainBeanList
-      .filter(element => element.id !== this.state.selectedCoffee.id)
+  const handleEditList = (beanToEdit) => {
+    const editedMainBeanList = mainBeanList
+      .filter(element => element.id !== selectedCoffee.id)
       .concat(beanToEdit);
-    this.setState({
-      mainBeanList: editedMainBeanList,
-      editing: false,
-      selectedCoffee: null
-    });
+    setMainBeanList(editedMainBeanList);
+    setSelectedCoffee(null);
+    setEditing(false);
   }
 
-  handleSellCoffee = (id) => {
-    const selectedCoffee = this.state.mainBeanList.filter(element => element.id === id)[0];
-    console.log(selectedCoffee);
+  const handleSellCoffee = (id) => {
+    setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
     const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
-    const selectedCoffeeUpdated = Object.assign({}, selectedCoffee, newQuantity);
-    console.log('update',selectedCoffeeUpdated);
-    const editedMainBeanList = this.state.mainBeanList
-      .filter(element => element.id !== this.state.selectedCoffee.id)
-      .concat(selectedCoffeeUpdated);
-    this.setState({
-      mainBeanList: editedMainBeanList,
-      selectedCoffee: null
-    });
+    setSelectedCoffee(Object.assign({}, selectedCoffee, newQuantity));
+    console.log('update', selectedCoffee);
+    const editedMainBeanList = mainBeanList
+      .filter(element => element.id !== selectedCoffee.id)
+      .concat(selectedCoffee);
+    setMainBeanList(editedMainBeanList);
+    setSelectedCoffee(selectedCoffee);
   }
 
-  render(){
+  let visibleState = null;
+  let buttonText = null;
 
-    let visibleState = null;
-    let buttonText = null;
-
-    if (this.state.editing) {
-      visibleState= <EditCoffeeForm 
-        bean={this.state.selectedCoffee}
-        onEditCoffee={this.handleEditList}
-      />
-      buttonText= "return to list";
-    } else if (this.state.selectedCoffee !== null) {
-      visibleState = <BeanDetail 
-        bean={this.state.selectedCoffee} 
-        onClickingDelete={this.handleDeleteBean}
-        onClickingEdit={this.handleEditClick}
-        onClickingSell={this.handleSellCoffee}
-      />
-      buttonText= "return to list";
-    } else if (this.state.showForm) {
-      visibleState = <NewBeanForm 
-        onCreateBean={this.handleConcatNewBean}
-      />
-      buttonText= "return to list";
-    } else {
-      visibleState = <BeanList 
-        list={this.state.mainBeanList}
-        onCoffeeSelection={this.handleChangingSelectedCoffee}
-        />;
-      buttonText = "add a coffee";
-    }
-    return (
-      <>
-        {visibleState}
-        <span><button id="form-ticket-button" onClick={this.handleNewForm}>{buttonText}</button></span>
-      </>
-    );
-
+  if (editing) {
+    visibleState= <EditCoffeeForm 
+      bean={selectedCoffee}
+      onEditCoffee={handleEditList}
+    />
+    buttonText= "return to list";
+  } else if (selectedCoffee !== null) {
+    visibleState = <BeanDetail 
+      bean={selectedCoffee} 
+      onClickingDelete={handleDeleteBean}
+      onClickingEdit={handleEditClick}
+      onClickingSell={handleSellCoffee}
+    />
+    buttonText= "return to list";
+  } else if (showForm) {
+    visibleState = <NewBeanForm 
+      onCreateBean={handleConcatNewBean}
+    />
+    buttonText= "return to list";
+  } else {
+    visibleState = <BeanList 
+      list={mainBeanList}
+      onCoffeeSelection={handleChangingSelectedCoffee}
+      />;
+    buttonText = "add a coffee";
   }
+
+  return (
+    <>
+      {visibleState}
+      <span><button id="form-ticket-button" onClick={handleNewForm}>{buttonText}</button></span>
+    </>
+  );
+
 
 }
-
-export default BeanControl;
-
 
 const beanSeed = [
   { name: 'Arabica', origin: 'Brazil', roast: 'Medium', price: 9.99, id: v4(), quantityRemaining: 105 },
