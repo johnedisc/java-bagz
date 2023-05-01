@@ -62,13 +62,15 @@ export const BeanControl = () => {
   const handleSellCoffee = (id) => {
     setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
     const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
-    setSelectedCoffee(Object.assign({}, selectedCoffee, newQuantity));
+    const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
+    console.log('temp', tempCoffee);
+    setSelectedCoffee(tempCoffee);
     console.log('update', selectedCoffee);
-    const editedMainBeanList = mainBeanList
-      .filter(element => element.id !== selectedCoffee.id)
-      .concat(selectedCoffee);
-    setMainBeanList(editedMainBeanList);
-    setSelectedCoffee(selectedCoffee);
+//    const editedMainBeanList = mainBeanList
+//      .filter(element => element.id !== selectedCoffee.id)
+//      .concat(selectedCoffee);
+//    setMainBeanList(editedMainBeanList);
+//    setSelectedCoffee(selectedCoffee);
   }
 
   let visibleState = null;

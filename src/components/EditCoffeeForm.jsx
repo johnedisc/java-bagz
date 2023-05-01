@@ -1,13 +1,12 @@
-import React from "react";
 import Form from "./Form";
 import PropTypes from "prop-types";
 
 const EditCoffeeForm = (props) => {
-  const { bean } = props;
+  const { bean, onEditCoffee } = props;
 
   const handleEditFormSubmission = (event) => {
     event.preventDefault();
-    props.onEditCoffee({
+    onEditCoffee({
       name: event.target.name.value,
       origin:event.target.origin.value,
       roast: event.target.roast.value,
