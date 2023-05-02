@@ -26,6 +26,7 @@ export const BeanControl = () => {
   }
 
   const handleConcatNewBean = async (newBean: BeanType) => {
+    console.log('que mierda', newBean);
     await addDoc(collection(db, "beans"), newBean);
     setShowForm(false);
   }
