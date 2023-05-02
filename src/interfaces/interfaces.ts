@@ -3,7 +3,7 @@ export interface BeanType {
   origin: string, 
   roast: string, 
   price: number, 
-//  id: string, 
+  id: string, 
   quantityRemaining: number
 }
 

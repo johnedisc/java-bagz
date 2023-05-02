@@ -11,6 +11,7 @@ const NewBeanForm = (props: NewBeanFormProps) => {
 
   const handleNewFormSubmission = (event: any) => {
     event.preventDefault();
+    console.log('handleNewForm');
     props.onCreateBean({ 
       name: event.target.name.value,
       origin:event.target.origin.value,
