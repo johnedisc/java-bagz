@@ -1,11 +1,12 @@
-import React from 'react';
 import { v4 } from 'uuid';
 import BeanList from './BeanList';
 import NewBeanForm from './NewBeanForm';
 import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BeanType } from './../interfaces/interfaces';
+import db from '../firebase';
+import { collection, addDoc } from "firebase/firestore";
 
 export const BeanControl = () => {
 
@@ -24,8 +25,8 @@ export const BeanControl = () => {
     }
   }
 
-  const handleConcatNewBean = (newBean: BeanType) => {
-    setMainBeanList(mainBeanList.concat(newBean));
+  const handleConcatNewBean = async (newBean: BeanType) => {
+    await addDoc(collection(db, "beans"), newBean);
     setShowForm(false);
   }
 

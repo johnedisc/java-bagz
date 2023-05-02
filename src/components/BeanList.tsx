@@ -4,7 +4,7 @@ import { BeanType } from "../interfaces/interfaces";
 
 interface BeanListProps {
   list: BeanType[];
-  onCoffeeSelection: () => void;
+  onCoffeeSelection: (id: string) => void;
 }
 
 function BeanList(props: BeanListProps){

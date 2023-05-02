@@ -1,5 +1,5 @@
 import React from "react";
-import { v4 } from "uuid";
+//import { v4 } from "uuid";
 import Form from "./Form";
 import { BeanType } from "../interfaces/interfaces";
 
@@ -16,8 +16,8 @@ const NewBeanForm = (props: NewBeanFormProps) => {
       origin:event.target.origin.value,
       roast: event.target.roast.value,
       price: parseFloat(event.target.price.value),
-      quantityRemaining: parseInt(event.target.quantityRemaining.value),
-      id: v4()
+      quantityRemaining: parseInt(event.target.quantityRemaining.value)
+//      id: v4()
     });
   }
 

@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^29.5.1",
     "@types/uuid": "^9.0.1",
     "dotenv": "^16.0.3",
