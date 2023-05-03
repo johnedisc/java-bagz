@@ -34,6 +34,12 @@ body {
   gap: var(--box-padding);
 }
 
+a {
+  background: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
 input,
 textarea,
 button {

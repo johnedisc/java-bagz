@@ -7,9 +7,10 @@ const componentStyle = {
   alignItems: 'center',
 }
 
-const login = {
-  right: '1em',
-  position: 'fixed'
+const loginStyle = {
+  right: '2em',
+  position: 'fixed',
+  textDecoration: 'none'
 }
 
 export function Navbar(){
@@ -17,7 +18,9 @@ export function Navbar(){
     <>
     <div className='flexed-row' style={componentStyle}>
       <h1>java bagz</h1>
-      <h3 style={login}>login</h3>
+      <a href="/login" className="flexed-row" style={loginStyle}>
+        <h3>login</h3>
+      </a>
     </div>
     </>
   );
