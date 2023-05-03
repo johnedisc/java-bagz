@@ -3,7 +3,13 @@ import React from "react";
 const componentStyle = {
   backgroundColor: 'black',
   width: '100%',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+const login = {
+  right: '1em',
+  position: 'fixed'
 }
 
 export function Navbar(){
@@ -11,6 +17,7 @@ export function Navbar(){
     <>
     <div className='flexed-row' style={componentStyle}>
       <h1>java bagz</h1>
+      <h3 style={login}>login</h3>
     </div>
     </>
   );
