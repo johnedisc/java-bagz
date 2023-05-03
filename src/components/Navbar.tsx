@@ -10,7 +10,7 @@ const componentStyle = {
 
 const loginStyle = {
   right: '2em',
-  position: 'fixed',
+  position: 'absolute',
   textDecoration: 'none'
 }
 

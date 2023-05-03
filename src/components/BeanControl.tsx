@@ -6,12 +6,12 @@ import EditCoffeeForm from './EditCoffeeForm';
 import React, { useState, useEffect } from 'react';
 import { BeanType, EditBeanType } from './../interfaces/interfaces';
 import { db, auth } from '../firebase';
-import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { query, where, getDocs, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 
 export const BeanControl = () => {
 
   const [showForm, setShowForm] = useState(false);
-  const [mainBeanList, setMainBeanList] = useState<BeanType[] | null>();
+  const [mainBeanList, setMainBeanList] = useState<BeanType[] | null>(null);
   const [selectedCoffee, setSelectedCoffee] = useState<BeanType | null>(null);
   const [editing, setEditing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,6 +56,7 @@ export const BeanControl = () => {
     console.log('que mierda', newBean);
     setShowForm(false);
   }
+
 
   const handleDeleteBean = async (id: string) => {
     if (mainBeanList) {
@@ -154,20 +155,20 @@ export const BeanControl = () => {
 }
 
 const beanSeed = [
-  { name: 'Arabica', origin: 'Brazil', roast: 'Medium', price: 9.99, id: v4(), quantityRemaining: 105 },
-  { name: 'Robusta', origin: 'Vietnam', roast: 'Dark', price: 7.99, id: v4(), quantityRemaining: 20 },
-  { name: 'Colombian', origin: 'Colombia', roast: 'Medium', price: 12.99, id: v4(), quantityRemaining: 50 },
-  { name: 'Sumatra', origin: 'Indonesia', roast: 'Dark', price: 10.99, id: v4(), quantityRemaining: 80 },
-  { name: 'Ethiopian', origin: 'Ethiopia', roast: 'Light', price: 11.99, id: v4(), quantityRemaining: 30 },
-  { name: 'Guatemala', origin: 'Guatemala', roast: 'Medium', price: 13.99, id: v4(), quantityRemaining: 70 },
-  { name: 'Kenyan', origin: 'Kenya', roast: 'Light', price: 12.99, id: v4(), quantityRemaining: 90 },
-  { name: 'Java', origin: 'Indonesia', roast: 'Medium', price: 9.99, id: v4(), quantityRemaining: 45 },
-  { name: 'Hawaiian', origin: 'Hawaii', roast: 'Medium', price: 15.99, id: v4(), quantityRemaining: 25 },
-  { name: 'Tanzanian', origin: 'Tanzania', roast: 'Medium', price: 11.99, id: v4(), quantityRemaining: 60 },
-  { name: 'Peruvian', origin: 'Peru', roast: 'Medium', price: 10.99, id: v4(), quantityRemaining: 40 },
-  { name: 'Costa Rican', origin: 'Costa Rica', roast: 'Medium', price: 12.99, id: v4(), quantityRemaining: 75 },
-  { name: 'Nicaraguan', origin: 'Nicaragua', roast: 'Medium', price: 10.99, id: v4(), quantityRemaining: 55 },
-  { name: 'Yemeni', origin: 'Yemen', roast: 'Dark', price: 13.99, id: v4(), quantityRemaining: 35 },
-  { name: 'Mocha', origin: 'Yemen', roast: 'Medium', price: 11.99, id: v4(), quantityRemaining: 65 },
-  { name: 'Panamanian', origin: 'Panama', roast: 'Light', price: 14.99, id: v4(), quantityRemaining: 15 }
+  { name: 'Arabica', origin: 'Brazil', roast: 'Medium', price: 9.99, quantityRemaining: 105 },
+  { name: 'Robusta', origin: 'Vietnam', roast: 'Dark', price: 7.99, quantityRemaining: 20 },
+  { name: 'Colombian', origin: 'Colombia', roast: 'Medium', price: 12.99, quantityRemaining: 50 },
+  { name: 'Sumatra', origin: 'Indonesia', roast: 'Dark', price: 10.99, quantityRemaining: 80 },
+  { name: 'Ethiopian', origin: 'Ethiopia', roast: 'Light', price: 11.99, quantityRemaining: 30 },
+  { name: 'Guatemala', origin: 'Guatemala', roast: 'Medium', price: 13.99, quantityRemaining: 70 },
+  { name: 'Kenyan', origin: 'Kenya', roast: 'Light', price: 12.99, quantityRemaining: 90 },
+  { name: 'Java', origin: 'Indonesia', roast: 'Medium', price: 9.99, quantityRemaining: 45 },
+  { name: 'Hawaiian', origin: 'Hawaii', roast: 'Medium', price: 15.99, quantityRemaining: 25 },
+  { name: 'Tanzanian', origin: 'Tanzania', roast: 'Medium', price: 11.99, quantityRemaining: 60 },
+  { name: 'Peruvian', origin: 'Peru', roast: 'Medium', price: 10.99, quantityRemaining: 40 },
+  { name: 'Costa Rican', origin: 'Costa Rica', roast: 'Medium', price: 12.99, quantityRemaining: 75 },
+  { name: 'Nicaraguan', origin: 'Nicaragua', roast: 'Medium', price: 10.99, quantityRemaining: 55 },
+  { name: 'Yemeni', origin: 'Yemen', roast: 'Dark', price: 13.99, quantityRemaining: 35 },
+  { name: 'Mocha', origin: 'Yemen', roast: 'Medium', price: 11.99, quantityRemaining: 65 },
+  { name: 'Panamanian', origin: 'Panama', roast: 'Light', price: 14.99, quantityRemaining: 15 }
 ];

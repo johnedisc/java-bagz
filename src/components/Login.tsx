@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { redirect } from "react-router-dom";
 
 const loginStyle = {
   alignItems: "center",
@@ -36,7 +37,6 @@ export const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setLoginSuccess(`you have successfully logged in as, ${userCredential.user.email}`);
-
       })
       .catch((error) => {
         setLoginSuccess(`there was an error logging in: ${error.message}`);
