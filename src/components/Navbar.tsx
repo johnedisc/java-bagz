@@ -20,7 +20,7 @@ export function Navbar(){
   return (
     <>
     <div className='flexed-row' style={componentStyle}>
-      <h1>java bagz</h1>
+      <Link to="/"><h1>java bagz</h1></Link>
       <Link to="/login" className="flexed-row" style={loginStyle}>
         <h3>{logStatus}</h3>
       </Link>

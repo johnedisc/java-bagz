@@ -5,7 +5,7 @@ import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
 import React, { useState, useEffect } from 'react';
 import { BeanType, EditBeanType } from './../interfaces/interfaces';
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 
 export const BeanControl = () => {
@@ -97,41 +97,50 @@ export const BeanControl = () => {
     }
   }
 
-  let visibleState: JSX.Element | null;
-  let buttonText: string | null;
+  let visibleState: JSX.Element | null = null;
+  let buttonText: string | null = null;
 
-  if (error) {
-    visibleState= <p>trouble at the mill: {error}</p>
-  } else if (editing && selectedCoffee !== null) {
-    visibleState= <EditCoffeeForm 
-      bean={selectedCoffee}
-      onEditCoffee={handleEditList}
-    />
-    buttonText= "return to list";
-  } else if (selectedCoffee !== null) {
-    visibleState = <BeanDetail 
-      bean={selectedCoffee} 
-      onClickingDelete={handleDeleteBean}
-      onClickingEdit={handleEditClick}
-      onClickingSell={handleSellCoffee}
-    />
-    buttonText= "return to list";
-  } else if (showForm) {
-    visibleState = <NewBeanForm 
-      onCreateBean={handleConcatNewBean}
-    />
-    buttonText= "return to list";
-  } else {
-    if (mainBeanList) {
-      visibleState = <BeanList 
-        list={mainBeanList}
-        onCoffeeSelection={handleChangingSelectedCoffee}
-        />;
-      buttonText = "add a coffee";
+  if (auth.currentUser === null) {
+    return (
+      <>
+        <h3>you must be logged in to see the inventory</h3>
+      </>
+    );
+  } else if (auth.currentUser !== null) {
+
+    if (error) {
+      visibleState= <p>trouble at the mill: {error}</p>
+    } else if (editing && selectedCoffee !== null) {
+      visibleState= <EditCoffeeForm 
+        bean={selectedCoffee}
+        onEditCoffee={handleEditList}
+      />
+      buttonText= "return to list";
+    } else if (selectedCoffee !== null) {
+      visibleState = <BeanDetail 
+        bean={selectedCoffee} 
+        onClickingDelete={handleDeleteBean}
+        onClickingEdit={handleEditClick}
+        onClickingSell={handleSellCoffee}
+      />
+      buttonText= "return to list";
+    } else if (showForm) {
+      visibleState = <NewBeanForm 
+        onCreateBean={handleConcatNewBean}
+      />
+      buttonText= "return to list";
     } else {
-      visibleState = null;
-      buttonText = null;
-    } 
+      if (mainBeanList) {
+        visibleState = <BeanList 
+          list={mainBeanList}
+          onCoffeeSelection={handleChangingSelectedCoffee}
+          />;
+        buttonText = "add a coffee";
+      } else {
+        visibleState = null;
+        buttonText = null;
+      } 
+    }
   }
 
   return (

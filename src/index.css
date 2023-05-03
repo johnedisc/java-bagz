@@ -38,6 +38,7 @@ a {
   background: inherit;
   color: inherit;
   font-family: inherit;
+  text-decoration: none;
 }
 
 input,
@@ -72,4 +73,3 @@ button {
 #help-form > * {
   margin: calc(var(--button-padding));
 }
-

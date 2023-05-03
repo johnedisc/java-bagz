@@ -36,6 +36,7 @@ export const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setLoginSuccess(`you have successfully logged in as, ${userCredential.user.email}`);
+
       })
       .catch((error) => {
         setLoginSuccess(`there was an error logging in: ${error.message}`);
