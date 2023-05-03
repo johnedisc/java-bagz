@@ -18,7 +18,6 @@ const NewBeanForm = (props: NewBeanFormProps) => {
       roast: event.target.roast.value,
       price: parseFloat(event.target.price.value),
       quantityRemaining: parseInt(event.target.quantityRemaining.value)
-//      id: v4()
     });
   }
 

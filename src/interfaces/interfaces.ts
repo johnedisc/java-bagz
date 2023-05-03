@@ -3,8 +3,8 @@ export interface BeanType {
   origin: string, 
   roast: string, 
   price: number, 
-  id: string, 
-  quantityRemaining: number
+  quantityRemaining: number,
+  id?: string 
 }
 
 export interface EditBeanType {

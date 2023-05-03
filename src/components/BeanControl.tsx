@@ -5,7 +5,7 @@ import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
 import React, { useState, useEffect } from 'react';
 import { BeanType, EditBeanType } from './../interfaces/interfaces';
-import db from '../firebase';
+import { db } from '../firebase';
 import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 
 export const BeanControl = () => {
