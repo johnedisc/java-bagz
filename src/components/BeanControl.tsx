@@ -4,25 +4,24 @@ import NewBeanForm from './NewBeanForm';
 import BeanDetail from './BeanDetail';
 import EditCoffeeForm from './EditCoffeeForm';
 import React, { useState, useEffect } from 'react';
-import { BeanType } from './../interfaces/interfaces';
+import { BeanType, EditBeanType } from './../interfaces/interfaces';
 import db from '../firebase';
 import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 
 export const BeanControl = () => {
 
   const [showForm, setShowForm] = useState(false);
-  const [mainBeanList, setMainBeanList] = useState<BeanType[] | null>([...beanSeed]);
+  const [mainBeanList, setMainBeanList] = useState<BeanType[] | null>();
   const [selectedCoffee, setSelectedCoffee] = useState<BeanType | null>(null);
   const [editing, setEditing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
-      collection(db, "bean"),
+      collection(db, "beans"),
       (collectionSnapshot) => {
         const beans: BeanType[] = [];
         collectionSnapshot.forEach((doc) => {
-          console.log('unsubscribe', doc);
           beans.push({
             name: doc.data().name, 
             origin: doc.data().origin, 
@@ -33,7 +32,6 @@ export const BeanControl = () => {
           });
         });
         setMainBeanList(beans);
-        console.log(beans);
       },
       (error) => {
         setError(error.message);
@@ -59,15 +57,15 @@ export const BeanControl = () => {
     setShowForm(false);
   }
 
-  const handleDeleteBean = (id: string) => {
-    if (mainBeanList !== null) {
-      setMainBeanList(mainBeanList.filter(element => element.id !== id));
+  const handleDeleteBean = async (id: string) => {
+    if (mainBeanList) {
+      await deleteDoc(doc(db, "beans", id));
       setSelectedCoffee(null);
     }
   }
 
   const handleChangingSelectedCoffee = (id: string) => {
-    if (mainBeanList !== null) {
+    if (mainBeanList) {
       setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
     }
   }
@@ -76,19 +74,16 @@ export const BeanControl = () => {
     setEditing(true);
   }
 
-  const handleEditList = (beanToEdit: BeanType) => {
-    if (selectedCoffee !== null && mainBeanList !== null) {
-      const editedMainBeanList = mainBeanList
-        .filter(element => element.id !== selectedCoffee.id)
-        .concat(beanToEdit);
-      setMainBeanList(editedMainBeanList);
+  const handleEditList = async (beanToEdit: EditBeanType) => {
+    if (selectedCoffee !== null && mainBeanList) {
+      await updateDoc(doc(db, "beans", beanToEdit.id), beanToEdit);
       setSelectedCoffee(null);
       setEditing(false);
     }
   }
 
   const handleSellCoffee = (id: string) => {
-    if (selectedCoffee !== null && mainBeanList !== null) {
+    if (selectedCoffee !== null && mainBeanList) {
       setSelectedCoffee(mainBeanList.filter(element => element.id === id)[0]);
       if (selectedCoffee.quantityRemaining > 0) {
         const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };

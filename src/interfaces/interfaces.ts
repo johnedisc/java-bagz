@@ -7,3 +7,7 @@ export interface BeanType {
   quantityRemaining: number
 }
 
+export interface EditBeanType {
+  id: string, 
+  [x: string]: any
+}
