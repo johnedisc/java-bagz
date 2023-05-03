@@ -111,7 +111,7 @@
 
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2022",
     "module": "commonjs",
     "outDir": "./",
     "noImplicitAny": true,
