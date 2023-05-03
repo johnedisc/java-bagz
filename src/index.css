@@ -69,9 +69,6 @@ button {
   padding: calc(var(--box-padding)/2);
 }
 
-#help-form button {
-}
-
 #help-form > * {
   margin: calc(var(--button-padding));
 }

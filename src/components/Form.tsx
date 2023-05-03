@@ -18,7 +18,6 @@ const Form = (props: FormProps) => {
           type="text" 
           name="name" 
           placeholder="name" 
-          value='hi'
         /> 
         <input 
           type="text" 

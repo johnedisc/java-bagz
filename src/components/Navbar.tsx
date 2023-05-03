@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const componentStyle = {
@@ -15,12 +15,14 @@ const loginStyle = {
 }
 
 export function Navbar(){
+  const [logStatus, setLogStatus] = useState('login');
+
   return (
     <>
     <div className='flexed-row' style={componentStyle}>
       <h1>java bagz</h1>
       <Link to="/login" className="flexed-row" style={loginStyle}>
-        <h3>login</h3>
+        <h3>{logStatus}</h3>
       </Link>
     </div>
     </>
