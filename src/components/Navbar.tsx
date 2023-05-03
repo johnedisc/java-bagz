@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const componentStyle = {
   backgroundColor: 'black',
@@ -18,9 +19,9 @@ export function Navbar(){
     <>
     <div className='flexed-row' style={componentStyle}>
       <h1>java bagz</h1>
-      <a href="/login" className="flexed-row" style={loginStyle}>
+      <Link to="/login" className="flexed-row" style={loginStyle}>
         <h3>login</h3>
-      </a>
+      </Link>
     </div>
     </>
   );

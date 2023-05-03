@@ -115,7 +115,10 @@
     "module": "commonjs",
     "outDir": "./",
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+    ]
   },
   "include": [
     "src/**/*.ts"

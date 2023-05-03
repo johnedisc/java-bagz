@@ -88,8 +88,6 @@ export const BeanControl = () => {
       if (selectedCoffee.quantityRemaining > 0) {
         const newQuantity = { quantityRemaining: selectedCoffee.quantityRemaining - 1 };
         const tempCoffee = (Object.assign({}, selectedCoffee, newQuantity));
-  //      console.log('temp', tempCoffee);
-  //      console.log('update', selectedCoffee);
         const editedMainBeanList = mainBeanList
           .filter(element => element.id !== selectedCoffee.id)
           .concat(tempCoffee);
